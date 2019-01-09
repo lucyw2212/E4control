@@ -103,7 +103,7 @@ def settings_query(device_list, v_min=None, v_max=None, v_steps=None, I_lim=None
     if lcr_mode:
         print("lcr_mode: %s" % lcr_mode)
     print("------------------------------------------------")
-    q = input("Settings correct? (y/n)")
+    q = raw_input("Settings correct? (y/n)")
     if q == "yes":
         pass
     elif q == "y":
