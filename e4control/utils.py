@@ -205,7 +205,7 @@ def check_outputname(output):
             name = check_outputname(newoutput)
             return(name)
         elif n == "n":
-             newoutput = output + "_X"
+            newoutput = output + "_X"
             name = check_outputname(newoutput)
             return(name)
         else:
