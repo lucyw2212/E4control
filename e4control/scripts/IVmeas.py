@@ -121,7 +121,7 @@ def main():
     ax1.set_xlabel(r'$U $ $ [\mathrm{V}]$')
     ax1.set_ylabel(r'$I_{mean} $ $ [\mathrm{uA}]$')
     ax1.set_title(r'IV curve')
-    ax2.plot(Ns, np.log(Is), 'o')
+    ax2.plot(Ns, np.log(np.abs(Is)), 'o')
     ax2.set_xlabel(r'$No.$')
     ax2.set_ylabel(r'$I $ $ [ln\mathrm{uA}]$')
     ax2.set_title(r'Voltage steps')
@@ -183,7 +183,7 @@ def main():
             ax2.set_title(r'Voltage step : %0.2f V' % voltage)
             ax2.set_xlabel(r'$No.$')
             ax2.set_ylabel(r'$I $ $ [ln\mathrm{uA}]$')
-            ax2.plot(Ns, np.ln(Is), 'r--o')
+            ax2.plot(Ns, np.log(np.abs(Is)), 'r--o')
             plt.pause(0.0001)
         if softLimit:
             break
