@@ -103,10 +103,16 @@ def settings_query(device_list, v_min=None, v_max=None, v_steps=None, I_lim=None
     if lcr_mode:
         print("lcr_mode: %s" % lcr_mode)
     print("------------------------------------------------")
-    q = input("Settings correct? Enter no or n, otherwise measurement will proceed.")
+    q = raw_input("Settings correct? Enter no or n, otherwise measurement will proceed.")
     if q == "no":
         sys.exit("Measurement aborted!")
+     if q == "No":
+        sys.exit("Measurement aborted!")
+     if q == "NO":
+        sys.exit("Measurement aborted!")
     elif q == "n":
+        sys.exit("Measurement aborted!")
+     if q == "N":
         sys.exit("Measurement aborted!")
     else:
         pass
@@ -199,12 +205,24 @@ def check_outputname(output):
     checktxtfile = (output + "/" + outputname + ".txt")
     if os.path.isfile(checktxtfile):
         print("Outputname: " + outputname)
-        n = input("File already exists! Enter n or no to not overwrite.")
+        n = raw_input("File already exists! Enter n or no to not overwrite.")
         if n == "no":
             newoutput = output + "_X"
             name = check_outputname(newoutput)
             return(name)
+        elif n == "No":
+            newoutput = output + "_X"
+            name = check_outputname(newoutput)
+            return(name)
+        elif n == "NO":
+            newoutput = output + "_X"
+            name = check_outputname(newoutput)
+            return(name)
         elif n == "n":
+            newoutput = output + "_X"
+            name = check_outputname(newoutput)
+            return(name)
+        elif n == "N":
             newoutput = output + "_X"
             name = check_outputname(newoutput)
             return(name)
