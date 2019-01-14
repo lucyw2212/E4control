@@ -104,7 +104,7 @@ def main():
     Us = []
     Imeans = []
     Isem = []
-    Ilogerr = Isem/Imeas
+    Ilogerr = Isem/Imeans
     Is = []
     Ns = []
     Ts = []
@@ -137,7 +137,7 @@ def main():
         time.sleep(args.delay)
         Is = []
         Isem = []
-        Ilogerr = Isem/Imeas
+        Ilogerr = Isem/Imeans
         Ns = []
         Ts = []
         Hs = []
