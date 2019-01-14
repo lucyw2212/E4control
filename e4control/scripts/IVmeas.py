@@ -104,6 +104,7 @@ def main():
     Us = []
     Imeans = []
     Isem = []
+    Ilogerr = Isem/Imeas
     Is = []
     Ns = []
     Ts = []
@@ -117,11 +118,11 @@ def main():
     fig = plt.figure(figsize=(8, 8))
     ax1 = plt.subplot2grid((3, 2), (0, 0), colspan=2, rowspan=2)
     ax2 = plt.subplot2grid((3, 2), (2, 0), colspan=2)
-    ax1.errorbar(Us, Imeans, yerr=Isem, fmt='o')
+    ax1.errorbar(Us, Imeans, yerr=Ilogerr, fmt='o')
     ax1.set_xlabel(r'$U $ $ [\mathrm{V}]$')
     ax1.set_ylabel(r'$I_{mean} $ $ [\mathrm{uA}]$')
     ax1.set_title(r'IV curve')
-    ax2.plot(Ns, Is), 'o')
+    ax2.plot.semilogy(Ns, np.log(np.abs(Is)), 'o')
     ax2.set_xlabel(r'$No.$')
     ax2.set_ylabel(r'$I $ $ [ln\mathrm{uA}]$')
     ax2.set_title(r'Voltage steps')
@@ -135,6 +136,8 @@ def main():
         d.rampVoltage(voltage, ch)
         time.sleep(args.delay)
         Is = []
+        Isem = []
+        Ilogerr = Isem/Imeas
         Ns = []
         Ts = []
         Hs = []
@@ -183,14 +186,14 @@ def main():
             ax2.set_title(r'Voltage step : %0.2f V' % voltage)
             ax2.set_xlabel(r'$No.$')
             ax2.set_ylabel(r'$I $ $ [ln\mathrm{uA}]$')
-            ax2.plot(Ns, Is), 'r--o')
+            ax2.plot.semilogy(Ns, np.log(np.abs(Is)), 'r--o')
             plt.pause(0.0001)
         if softLimit:
             break
         Us.append(voltage)
         Imeans.append(np.mean(Is))
         Isem.append(sem(Is))
-        ax1.errorbar(Us, Imeans, yerr=Isem, fmt='g--o')
+        ax1.errorbar(Us, np.log(np.abs(Imeans)), yerr=Ilogerr, fmt='g--o')
         plt.pause(0.0001)
 
     # ramp down voltage
@@ -210,7 +213,7 @@ def main():
     plt.grid()
     plt.title(r'IV curve: %s' % outputname)
     plt.xlabel(r'$U $ $ [\mathrm{V}]$')
-    plt.ylabel(r'$I_{mean} $ $ [\mathrm{uA}]$')
+    plt.ylabel(r'$ln(I_{mean}) $ $ [\mathrm{uA}]$')
     plt.xlim(min(Us)-5, max(Us)+5)
     plt.tight_layout()
     plt.savefig('%s.pdf' % outputname)
