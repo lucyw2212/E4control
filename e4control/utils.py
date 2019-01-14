@@ -106,13 +106,13 @@ def settings_query(device_list, v_min=None, v_max=None, v_steps=None, I_lim=None
     q = raw_input("Settings correct? Enter no or n, otherwise measurement will proceed.")
     if q == "no":
         sys.exit("Measurement aborted!")
-     if q == "No":
+    if q == "No":
         sys.exit("Measurement aborted!")
-     if q == "NO":
+    if q == "NO":
         sys.exit("Measurement aborted!")
     elif q == "n":
         sys.exit("Measurement aborted!")
-     if q == "N":
+    if q == "N":
         sys.exit("Measurement aborted!")
     else:
         pass
